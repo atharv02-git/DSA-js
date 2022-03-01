@@ -1,3 +1,4 @@
+//Multiple pointer pattern
 function sumZero(arr) {
   //assigning indexes
   let left = 0;
