@@ -1,3 +1,4 @@
+/** Time Complexity: O(n^2) */
 // unpotimized version
 function selectionSort(arr) {
   for (let i = 0; i < arr.length; i++) {
