@@ -1,5 +1,4 @@
 // Radix sort helper functions
-
 /** getDigit returns the digit in num at the given place value(i)
  * getDigit(12345,1) => 4, getDigit(12345,0) => 5
  */
@@ -21,4 +20,19 @@ function mostDigits(nums){
     }
     return maxDigits;
 }
-console.log(mostDigits([10,11,459,12315,1432523513241]))
+//Radix Sort function
+function radixSort(nums){
+    let maxDigitCount = mostDigits(nums);
+    for(let k = 0; k < maxDigitCount; k++){
+        let digitBuckets = Array.from({length : 10}, () => []); /**This line will help to create empty subArrays in a single Array */
+        for(let i = 0; i < nums.length; i++){
+            //using getDigit helper function to get digits
+            let digit = getDigit(nums[i], k);
+            digitBuckets[digit].push(nums[i]) // and placing each number in the corresponding bucket based on its 'k'th digit 
+        }
+        //concatenating multiple arrays into single array to reassign nums to generate the sorted list of single array and not multiple arrays
+        nums = [].concat(...digitBuckets)
+    }
+    return nums;
+}
+console.log(radixSort([23,345,5467,12,2345,9852]))
