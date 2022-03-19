@@ -24,15 +24,20 @@ function mostDigits(nums){
 function radixSort(nums){
     let maxDigitCount = mostDigits(nums);
     for(let k = 0; k < maxDigitCount; k++){
-        let digitBuckets = Array.from({length : 10}, () => []); /**This line will help to create empty subArrays in a single Array */
+        let posDigitBuckets = Array.from({length : 10}, () => []); /**This line will help to create empty subArrays in a single Array */
+        let negDigitBuckets = Array.from({length : 10}, () => []); /**This line will help to create empty subArrays in a single Array */
         for(let i = 0; i < nums.length; i++){
             //using getDigit helper function to get digits
             let digit = getDigit(nums[i], k);
-            digitBuckets[digit].push(nums[i]) // and placing each number in the corresponding bucket based on its 'k'th digit 
+            if(nums[i] > 0){
+                posDigitBuckets[digit].push(nums[i]) // and placing each number in the corresponding bucket based on its 'k'th digit 
+            }else(
+                negDigitBuckets[negDigitBuckets.length-1-digit].push(nums[i])
+            )
         }
         //concatenating multiple arrays into single array to reassign nums to generate the sorted list of single array and not multiple arrays
-        nums = [].concat(...digitBuckets)
+        nums = [].concat(...negDigitBuckets, ...posDigitBuckets);
     }
     return nums;
 }
-console.log(radixSort([23,345,5467,12,2345,9852]))
+console.log(radixSort([23,345,-5467,-12,2345,-9852]))
