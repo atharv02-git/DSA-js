@@ -42,11 +42,25 @@ class singlyLinkedList {
     }
     return current;
   }
+  shift() {
+    if (!this.head) return undefined;
+    let currentHead = this.head; //where currentHead is nothing but old head
+    this.head = currentHead.next;
+    this.length--;
+    if (this.length === 0) {
+      this.head = null;
+      this.tail = null;
+    }
+    return currentHead;
+  }
 }
 
 const list = new singlyLinkedList();
 console.log(list.push("Ab"));
 console.log(list.push("vk"));
 console.log(list.push("glenn"));
-console.log(list.pop());
-console.log(list)
+// console.log(list.pop());
+console.log(list.shift());
+console.log(list.shift());
+console.log(list.shift());
+console.log(list);
