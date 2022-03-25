@@ -100,11 +100,25 @@ class singlyLinkedList {
     this.length ++;
     return true;
   }
+  // Remove functionality
+  remove(index){
+    if(index < 0 || index >= this.length) return undefined;
+    if(index === this.length) return !!this.pop();
+    if(index === 0) return !!this.shift();
+    else{
+     let prevNode = this.get(index-1); //retrieving the node 1 before trying to remove
+     //setting a connection: prevNode --> removedNode --> prevNode.next
+     let removed = prevNode.next;
+     prevNode.next = removed.next;
+     this.length--;
+     return removed;
+    }
+  }
 }
 
 const list = new singlyLinkedList();
 console.log(list.push("Ab"));
 console.log(list.push("vk"));
 console.log(list.push("glenn"));
-console.log(list.insert(1,"Unshifting"))
+console.log(list.remove(2))
 console.log(list)
