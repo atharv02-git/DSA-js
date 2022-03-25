@@ -85,12 +85,26 @@ class singlyLinkedList {
     }
     return false;
   }
+  // insert function
+  insert(index, val){
+    if(index < 0 || index > this.length) return false;
+    if(index === this.length) return !!this.push(val); //!! returns boolean value
+    if(index === 0) return !!this.unShift(val);
+    else{
+      let newNode = new Node(val);
+      let prev = this.get(index - 1);
+      let temp = prev.next; //creating a connection between prevNode --> NodeToBeInsterted --> NextOfPrevNode 
+      prev.next = newNode;
+      newNode.next = temp;
+    }
+    this.length ++;
+    return true;
+  }
 }
 
 const list = new singlyLinkedList();
 console.log(list.push("Ab"));
 console.log(list.push("vk"));
 console.log(list.push("glenn"));
-console.log(list.set(2,'warner'))
-console.log(list.get(2))
+console.log(list.insert(1,"Unshifting"))
 console.log(list)
